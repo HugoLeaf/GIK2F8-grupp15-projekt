@@ -59,10 +59,10 @@ app.delete("/employees/:id", async (req, res) => {
     const currentEmployees = JSON.parse(listBuffer);
     if (currentEmployees.length > 0) {
       await fs.writeFile("./employees.json", JSON.stringify(currentEmployees.filter((employee) => employee.id != id)));
-      res.send({ message: `uppgift med id ${id} har tagits bort` });
+      res.send({ message: `Anställd med id ${id} har tagits bort` });
 
     } else {
-      res.status(404).send({ error: "Ingen uppgift att ta bort" });
+      res.status(404).send({ error: "Ingen anställd att ta bort" });
     }
   } catch (error) {
     res.status(500).send({ error: error.stack });
@@ -85,7 +85,7 @@ app.put('/employees/:id', async (req, res) => {
       }
 
       await fs.writeFile('./employees.json', JSON.stringify(currentEmployees));
-      res.send({ message: `Uppgift med ID nummer ${id} har uppdaterats` });
+      res.send({ message: `Anställd med ID nummer ${id} har uppdaterats` });
     }
     else if (stampEmployee == false) {
       for (let i = 0; i < currentEmployees.length; i++) {
@@ -95,7 +95,7 @@ app.put('/employees/:id', async (req, res) => {
       }
       await fs.writeFile('./employees.json', JSON.stringify(currentEmployees));
 
-      res.send({ message: `Uppgift med ID nummer ${id} har uppdaterats` });
+      res.send({ message: `Anställd med ID nummer ${id} har uppdaterats` });
     };
 
   }
